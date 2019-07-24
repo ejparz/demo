@@ -1,1 +1,1 @@
-# java-practice
+Java Practice Project
