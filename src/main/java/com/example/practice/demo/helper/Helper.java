@@ -7,6 +7,7 @@ import java.util.*;
 import com.example.practice.demo.models.Vehicle;
 import com.example.practice.demo.models.TreeNode;
 import java.util.stream.*;
+import java.util.Queue;
 
 /*
     To Study:
@@ -61,20 +62,54 @@ public class Helper{
     }
 
 
-    public boolean depthFirstSearch(TreeNode treeNode, int value){
-        System.out.println("Current Value" + treeNode.getValue());
-        if(treeNode.getValue() == value){
-            return true;
-        }
-        if(treeNode.getLeft().isPresent()){
-            return this.depthFirstSearch(treeNode.getLeft().get(), value);
+    //Depth first search we use a stack.
+    public int depthFirstSearch(TreeNode treeNode, int value){
+       int count = 1;
+       Stack<TreeNode> stack = new Stack<TreeNode>();
+       stack.add(treeNode);
 
-        } else if(treeNode.getRight().isPresent()){
-            return this.depthFirstSearch(treeNode.getRight().get(), value);
-        }
+       while(!stack.isEmpty()){
+           TreeNode e = stack.pop();
+           System.out.println(e.getValue());
+           if(e.getValue() == value){
+               return count;
+           } else {
+               count++;
+              if(e.getRight().isPresent()){
+                stack.add(e.getRight().get());
+              }
+              if(e.getLeft().isPresent()){
+                stack.add(e.getLeft().get());
+              }
+           } 
+       }
 
-        return false;
+        return count;
     }
+
+	//bfs we use a queue
+    public int breadthFirstSearch(TreeNode treeNode, int value){
+        int count = 1;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(treeNode);
+        while(!queue.isEmpty()){
+            TreeNode e = queue.poll();
+            System.out.println(e.getValue());
+            if(e.getValue() == value){
+                return count;
+            } else {
+                count++;
+                if(e.getLeft().isPresent()){
+                    queue.add(e.getLeft().get());
+                }
+                if(e.getRight().isPresent()){
+                    queue.add(e.getRight().get());
+                  }
+            } 
+        }
+ 
+         return count;
+     }
 
     public List<Integer> mapPractice(){
         return this.vehicleMakes.stream()

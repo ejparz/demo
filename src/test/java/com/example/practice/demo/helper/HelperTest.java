@@ -14,9 +14,31 @@ public class HelperTest {
 
     Helper h;
 
+    TreeNode root;
+
     @Before
     public void setUp(){
         h = new Helper();
+
+        /*
+                *
+              *   *
+            *  * *  *
+
+                1
+              2   3
+            4  5 6  7
+        */
+
+        TreeNode node7 = new TreeNode(7, Optional.empty(), Optional.empty());
+        TreeNode node6 = new TreeNode(6, Optional.empty(), Optional.empty());
+        TreeNode node5 = new TreeNode(5, Optional.empty(), Optional.empty());
+        TreeNode node4 = new TreeNode(4, Optional.empty(), Optional.empty());
+
+        TreeNode node3 = new TreeNode(3, Optional.of(node6), Optional.of(node7));
+        TreeNode node2 = new TreeNode(2, Optional.of(node4), Optional.of(node5));
+
+        root = new TreeNode(1, Optional.of(node2), Optional.of(node3));
     }
 
 
@@ -46,29 +68,35 @@ public class HelperTest {
     }
 
     @Test
-    public void testDepthFirstSearch(){
-        /*
-                *
-              *   *
-            *  * *  *
-        */
-
-        
-        TreeNode node7 = new TreeNode(7, Optional.empty(), Optional.empty());
-        TreeNode node6 = new TreeNode(6, Optional.empty(), Optional.empty());
-        TreeNode node5 = new TreeNode(5, Optional.empty(), Optional.empty());
-        TreeNode node4 = new TreeNode(4, Optional.empty(), Optional.empty());
-
-        TreeNode node3 = new TreeNode(3, Optional.of(node4), Optional.of(node5));
-        TreeNode node2 = new TreeNode(2, Optional.of(node6), Optional.of(node7));
-
-        TreeNode node1 = new TreeNode(1, Optional.of(node2), Optional.of(node3));
-
-        boolean result = h.depthFirstSearch(node1, 7);
+    public void testDepthFirstSearch_Deepest(){
+        int result = h.depthFirstSearch(root, 7);
 
         //TODO: Need to fix this test
-        Assert.assertEquals(false, result);
+        Assert.assertEquals(7, result);
+    }
 
+    @Test
+    public void testDepthFirstSearch_five(){
+        int result = h.depthFirstSearch(root, 3);
+
+        //TODO: Need to fix this test
+        Assert.assertEquals(5, result);
+    }
+
+    @Test
+    public void testBreadthFirstSearch_Deepest(){
+        int result = h.breadthFirstSearch(root, 7);
+
+        //TODO: Need to fix this test
+        Assert.assertEquals(7, result);
+    }
+
+    @Test
+    public void testBreadthFirstSearch_three(){
+        int result = h.breadthFirstSearch(root, 3);
+
+        //TODO: Need to fix this test
+        Assert.assertEquals(3, result);
     }
 
     @Test
