@@ -128,6 +128,28 @@ public class Helper{
         return numbers;
     }
 
+    public String calc(String o1, String op, String o2) throws Exception{
+        double n1 = Double.parseDouble(o1);
+        double n2 = Double.parseDouble(o2);
+
+        Double result = 0.0;
+
+        if(op.equals("+")){
+            result = new Double(n1 + n2); 
+        } 
+        if(op.equals("-")){
+            result = new Double(n1 - n2); 
+        }
+        if(op.equals("*")){
+            result = new Double(n1 * n2); 
+        }
+        if(op.equals("/")){
+            result = new Double(n1 / n2); 
+        }
+
+        return result.toString();
+    }
+
 
 
 }
