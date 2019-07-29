@@ -86,9 +86,3 @@ public class Practice {
 
 
 }
-
-public class TestOrder {
-    static {
-        for(0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.00000000)
-    }
-}
